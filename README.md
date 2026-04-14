@@ -43,3 +43,16 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+// Import the crypto module
+const crypto = require("crypto");
+
+// Generate a secure random passkey
+const generatePasskey = () => {
+  // Generate a random 32-byte (256-bit) key in hexadecimal format
+  const passkey = crypto.randomBytes(32).toString("hex");
+  return passkey;
+};
+
+// Usage
+const passkey = generatePasskey();
+console.log("Generated Passkey:", passkey);
