@@ -1,0 +1,31 @@
+import requests
+
+TOKEN = "your_personal_access_token"  # Replace with your PAT
+OWNER = "your_username"  # Replace with your GitHub username or org
+REPO = "your_repository"  # Replace with your repository name
+WORKFLOW_FILE_NAME = "workflow.yml"  # This is the name of your workflow file
+REF = "main"  # The branch you want to trigger this workflow on
+
+# GitHub API endpoint
+url = f"https://api.github.com/repos/{OWNER}/{REPO}/actions/workflows/{WORKFLOW_FILE_NAME}/dispatches"
+
+# HTTP request headers
+headers = {
+    "Accept": "application/vnd.github.v3+json",
+    "Authorization": f"token {TOKEN}"
+}
+
+# Data payload
+data = {
+    "ref": REF,  # Branch to trigger the workflow on
+}
+
+# Trigger the workflow
+response = requests.post(url, headers=headers, json=data)
+
+# Print the response
+if response.status_code == 204:
+    print("Workflow triggered successfully!")
+else:
+    print(f"Failed to trigger workflow. Status code: {response.status_code}")
+    print(response.json())
