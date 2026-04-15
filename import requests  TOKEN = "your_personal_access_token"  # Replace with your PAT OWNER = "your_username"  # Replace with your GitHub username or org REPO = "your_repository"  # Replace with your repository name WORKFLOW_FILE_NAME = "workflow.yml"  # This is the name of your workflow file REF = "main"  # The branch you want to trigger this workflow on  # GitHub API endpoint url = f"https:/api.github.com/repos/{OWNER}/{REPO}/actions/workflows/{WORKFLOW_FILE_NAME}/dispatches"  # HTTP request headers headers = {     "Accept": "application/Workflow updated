@@ -1,0 +1,9 @@
+#!/bin/bash
+# Example: Playback Test Utility
+
+echo "Starting playback test for Claude device service..."
+
+# Example: Playing a test audio file using FFmpeg
+ffmpeg -i test.mp3 -f null -  # Replace with your actual playback logic
+
+echo "Playback test completed successfully!"
