@@ -1,0 +1,45 @@
+import sys
+import os
+
+def square_text_outline(input_file, output_file):
+    """
+    Reads input text and creates a square text outline for each line.
+    """
+    with open(input_file, 'r') as infile:
+        lines = infile.readlines()
+
+    with open(output_file, 'w') as outfile:
+        for line in lines:
+            stripped_line = line.strip()
+            left_border = f"| {stripped_line} |"
+            border = '+' + '-' * (len(stripped_line) + 2) + '+'
+
+            # Create square outline
+            outfile.write(border + '\n')
+            outfile.write(left_border + '\n')
+            outfile.write(border + '\n\n')
+    
+    print(f"Square text outline saved to {output_file}")
+
+def rip_text(input_file):
+    """
+    Extracts and prints text that matches certain criteria from the document.
+    """
+    with open(input_file, 'r') as infile:
+        lines = infile.readlines()
+
+    ripped_lines = [line for line in lines if "engine" in line]  # Example condition
+    print("Ripped Text:")
+    print(''.join(ripped_lines))
+
+if __name__ == "__main__":
+    # Usage: python process_text.py input.txt output.txt
+    if len(sys.argv) != 3:
+        print("Usage: python process_text.py <input_file> <output_file>")
+        sys.exit(1)
+
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
+
+    square_text_outline(input_file, output_file)
+    rip_text(input_file)
