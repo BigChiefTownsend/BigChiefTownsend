@@ -56,3 +56,34 @@ const generatePasskey = () => {
 // Usage
 const passkey = generatePasskey();
 console.log("Generated Passkey:", passkey);
+name: Process Text Automation
+
+on:
+  push:
+    branches:
+      - main  # Trigger when pushing to the main branch
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  process-text:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout repository
+    - name: Checkout repository code
+      uses: actions/checkout@v3
+
+    # 2. Set up Python environment
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.9"
+
+    # 3. Run text processing script
+    - name: Run Text Processing Script
+      run: |
+        python scripts/process_text.py documents/input.txt documents/square_text_output.txt
+
+    # 4. Output Results
+    - name: Show Output
+      run: cat documents/square_text_output.txt
