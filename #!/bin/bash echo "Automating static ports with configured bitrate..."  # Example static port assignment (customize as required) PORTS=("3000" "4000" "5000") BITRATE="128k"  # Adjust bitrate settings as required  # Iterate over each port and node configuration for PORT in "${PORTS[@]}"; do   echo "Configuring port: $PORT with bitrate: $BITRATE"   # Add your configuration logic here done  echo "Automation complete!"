@@ -1,0 +1,14 @@
+#!/bin/bash
+echo "Automating static ports with configured bitrate..."
+
+# Example static port assignment (customize as required)
+PORTS=("3000" "4000" "5000")
+BITRATE="128k"  # Adjust bitrate settings as required
+
+# Iterate over each port and node configuration
+for PORT in "${PORTS[@]}"; do
+  echo "Configuring port: $PORT with bitrate: $BITRATE"
+  # Add your configuration logic here
+done
+
+echo "Automation complete!"
