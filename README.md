@@ -104,3 +104,29 @@ jobs:
     # 4. Output Results
     - name: Show Output
       run: cat documents/square_text_output.txt
+name: Process Text Automation
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  process-text:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.9"
+
+    - name: Run Text Processing Script
+      run: |
+        python scripts/process_text.py documents/input.txt documents/square_text_output.txt
+
+    - name: Show Output
+      run: cat documents/square_text_output.txt
